@@ -1,0 +1,6 @@
+@ReactNews.Server_HostAddress = http://localhost:5072
+
+GET {{ReactNews.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
