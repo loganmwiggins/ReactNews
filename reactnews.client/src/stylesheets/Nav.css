@@ -1,0 +1,8 @@
+.nav-container {
+    width: 100%;
+    background: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

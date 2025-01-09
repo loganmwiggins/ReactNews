@@ -24,7 +24,7 @@ function HomeFeed() {
         }
 
         getTopArticles()
-    }, [])
+    }, []);
 
     const topArticles = topArticlesJson.map((article) => 
         <ArticleCard 

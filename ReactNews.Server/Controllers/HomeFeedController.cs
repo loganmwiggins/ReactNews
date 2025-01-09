@@ -13,7 +13,7 @@ namespace ReactNews.Server.Controllers
     [Route("/api")]
     public class HomeFeedController : Controller
     {
-        [HttpGet("SearchedArticles")]
+        [HttpGet("SearchedArticles/{query}")]
         public List<Article> SearchArticles(string query)
         {
             string API_KEY = "667cf68eaa6e48b0b06f3bf0a9590003";
