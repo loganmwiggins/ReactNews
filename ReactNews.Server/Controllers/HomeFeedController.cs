@@ -9,26 +9,19 @@ using NewsAPI.Models;
 using NewsAPI.Constants;
 namespace ReactNews.Server.Controllers
 {
-    public class HomeFeedController : Controller 
+    [ApiController]
+    [Route("/api")]
+    public class HomeFeedController : Controller
     {
-        public IActionResult Index(string filter = "Cybersecurity")
+        [HttpGet("Test")]
+        public IEnumerable<int> GetArticle()
         {
-            ViewData["Filter"] = filter;
-            var articles = APIitems.GetArticles(filter);
-
-            return View(articles); // Pass the articles to the Index view
+            var yuh = new List<int>();
+            return yuh;
         }
 
-
-        [HttpPost]
-        public IActionResult FilterResults(string filter)
-        {
-            return RedirectToAction("Index", new { filter });
-        }
-    }
-    public class APIitems
-    {
-        public static List<Article> GetArticles(string query)
+        [HttpGet("SearchedArticles")]
+        public List<Article> SearchArticles(string query)
         {
             string API_KEY = "667cf68eaa6e48b0b06f3bf0a9590003";
             // API key
@@ -57,13 +50,44 @@ namespace ReactNews.Server.Controllers
 
                 }
             }
+
             return ArtList;
         }
 
+
+        [HttpGet("TopArticles")]
+        public List<Article> GetTopArticles()
+        {
+            string API_KEY = "667cf68eaa6e48b0b06f3bf0a9590003";
+            // API key
+            //string API_KEY = "fbbc8a18e6934ad49468e2a21663801c";
+            List<Article> ArtList = new List<Article>();
+            var newsApiClient = new NewsApiClient(API_KEY);
+            var articlesResponse = newsApiClient.GetTopHeadlines(new TopHeadlinesRequest
+            {
+                Q = "",
+                Language = Languages.EN,
+
+            });
+            if (articlesResponse.Status == Statuses.Ok)
+            {
+                foreach (var article in articlesResponse.Articles)
+                {
+                    //string trimmed = "";
+                    if (article.Title != "[Removed]" && !string.IsNullOrEmpty(article.UrlToImage))
+                    {
+
+                        //if (article.Author.Contains(',')) { trimmed = article.Author.Trim(','); } else {  trimmed = article.Author; }
+
+                        ArtList.Add(new Article(article.Title, article.Author, article.Description, article.PublishedAt.ToString(), article.Url, article.UrlToImage, article.Content));
+                    }
+
+                }
+            }
+
+            return ArtList;
+        }
     }
-
-
-
 
 
     public struct Article
