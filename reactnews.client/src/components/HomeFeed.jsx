@@ -1,22 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import ArticleCard from './ArticleCard';
+import '../stylesheets/HomeFeed.css';
 
 function HomeFeed() {
     // JAVASCRIPT
+    const [topArticlesJson, setTopArticlesJson] = useState([]);
+    const url = "https://localhost:7081/api/TopArticles";
 
+    useEffect(()=>{
+        async function getTopArticles() {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Response status: ${response.status}`);
+                }
+                const json = await response.json();
+
+                setTopArticlesJson(json);
+            }
+            catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        getTopArticles()
+    }, [])
+
+    const topArticles = topArticlesJson.map((article) => 
+        <ArticleCard 
+            key={article.imagePath}
+            imagePath={article.imagePath}
+            title={article.title}
+            author={article.author}
+            dateTime={article.dateTime}
+            description={article.description}
+        />
+    );
+      
 
     // HTML
     return (
     <>
         <h1>Today's Top Stories</h1>
-        
+
+        <div className="news-container">
+            {topArticles}
+        </div>
+
         {/* Search */}
-        <form method="post" action="">
+        {/* <form method="post" action="">
             <input type="text" placeholder="Search for articles" />
-        </form>
+        </form> */}
 
         {/* Filters */}
-        <form method="post" action="">
-            <div class="filter-row">
+        {/* <form method="post" action="">
+            <div className="filter-row">
                 <button type="submit" name="filter" value="United States" className="">U.S.</button>
                 <button type="submit" name="filter" value="Technology" className="">Technology</button>
                 <button type="submit" name="filter" value="Entertainment" className="">Entertainment</button>
@@ -24,7 +62,10 @@ function HomeFeed() {
                 <button type="submit" name="filter" value="Science" className="">Science</button>
                 <button type="submit" name="filter" value="Health" className="">Health</button>
             </div>
-        </form>
+        </form> */}
+
+        {/* Articles */}
+
     </>
     );
 }

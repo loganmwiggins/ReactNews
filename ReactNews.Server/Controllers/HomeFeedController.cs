@@ -13,13 +13,6 @@ namespace ReactNews.Server.Controllers
     [Route("/api")]
     public class HomeFeedController : Controller
     {
-        [HttpGet("Test")]
-        public IEnumerable<int> GetArticle()
-        {
-            var yuh = new List<int>();
-            return yuh;
-        }
-
         [HttpGet("SearchedArticles")]
         public List<Article> SearchArticles(string query)
         {
@@ -31,7 +24,7 @@ namespace ReactNews.Server.Controllers
             var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
             {
                 Q = query,
-                SortBy = SortBys.Popularity,
+                SortBy = SortBys.Relevancy,
                 Language = Languages.EN,
 
             });
