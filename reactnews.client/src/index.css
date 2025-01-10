@@ -95,6 +95,7 @@ button:focus-visible {
   --footer-background: #333;
   --footer-text: #fff;
   --accent-red: #e02b29;
+  --accent-blue: rgb(40, 201, 255);
   --navbar: #000;
 }
 
@@ -116,5 +117,17 @@ html {
   img {
     width: 1.5rem;
     height: 1.5rem;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
   }
+}
+
+/* News Feed */
+.news-container {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  gap: 1rem;
+  /* justify-content: space-between; */
+  margin: 0 auto;
+  padding: 2rem 0;
 }
