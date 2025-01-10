@@ -44,7 +44,7 @@ namespace ReactNews.Server.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("GetFavorites")]
         public async Task<IActionResult> GetFavorites()
         {
 

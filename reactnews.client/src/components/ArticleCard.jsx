@@ -1,41 +1,73 @@
 import React from 'react';
 import '../stylesheets/ArticleCard.css';
 
-function ArticleCard({imagePath, title, author, dateTime, description, url, source}) {
+function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites}) {
 
     function openArticle(articleUrl) {
         window.open(articleUrl, "_blank");
     }
 
-    async function addArticleToFavorites(article) {
-        const articleData = {
-            title,
-            url,
-            description,
-            author, 
-            imagePath,
-            dateTime,
-            source
-        }
+    // async function addArticleToFavorites(article) {
+    //     const articleData = {
+    //         title,
+    //         url,
+    //         description,
+    //         author, 
+    //         imagePath,
+    //         dateTime,
+    //         source
+    //     }
+
+    //     try {
+    //         const response = await fetch("https://localhost:7081/api/Favorites/Add", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(articleData), // Convert article data to JSON
+    //         });
+
+    //         if (response.ok) {
+    //             alert("Article added to favorites!");
+    //             console.log("Article added to favorites!");
+    //         } else {
+    //             alert("Failed.")
+    //             console.error("Failed to add article to favorites.");
+    //         }
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //     }
+    // }
+
+    // Add or remove article from favorites
+    async function toggleFavorite(event) {
+        event.stopPropagation(); // Prevent triggering the `onClick` for opening the article
 
         try {
-            const response = await fetch("https://localhost:7081/api/Favorites/Add", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(articleData), // Convert article data to JSON
-            });
-
-            if (response.ok) {
-                alert("Article added to favorites!");
-                console.log("Article added to favorites!");
+            if (isFavorited) {
+                // Remove article from favorites
+                await fetch("https://localhost:7081/api/Favorites/Remove", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(url),
+                });
+                setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.url !== url));
             } else {
-                alert("Failed.")
-                console.error("Failed to add article to favorites.");
+                // Add article to favorites
+                const articleData = { title, author, dateTime, description, imagePath, url, source };
+                await fetch("https://localhost:7081/api/Favorites/Add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(articleData),
+                });
+                setFavorites((prevFavorites) => [...prevFavorites, articleData]);
             }
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Error toggling favorite:", error);
         }
     }
 
@@ -55,15 +87,12 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                 </div>
             </div>
             <div className="news-item-btns">
-                <button 
-                    type="button" 
-                    className="btn-icon"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        addArticleToFavorites();
-                    }}
-                >
-                    <img src="/assets/heart.svg" draggable="false" />
+                <button type="button" className="btn-icon" onClick={toggleFavorite}>
+                    <img
+                        src={isFavorited ? "/assets/heart-filled.svg" : "/assets/heart.svg"}
+                        alt="Favorite"
+                        draggable="false"
+                    />
                 </button>
             </div>
         </div>
