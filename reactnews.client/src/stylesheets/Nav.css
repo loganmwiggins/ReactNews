@@ -1,8 +1,33 @@
 .nav-container {
     width: 100%;
-    background: black;
+    border-bottom: 1px solid lightgrey;
+    padding: 1rem;
+    margin-bottom: 2rem;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.searchbar {
+    width: 20rem;
+    padding: .5rem 1rem;
+    border-radius: 5rem;
 }

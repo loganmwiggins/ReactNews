@@ -11,27 +11,34 @@ function Nav() {
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            // Navigate to the results page with the search query
-            navigate(`/results?query=${searchQuery}`);
+            navigate(`/results?query=${searchQuery}`);  // Navigate to the results page with the search query
         }
     };
 
     // HTML
     return (
     <div className="nav-container">
-        <p>ReactNews</p>
+        <div className="title">
+            <img src="/assets/react.svg" draggable="false" />
+            <h3>ReactNews</h3>
+        </div>
 
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleSearch} className="search-container">
             <input 
-                type="text" 
+                type="text"
+                className="searchbar" 
                 placeholder="Search for articles" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className="btn-icon">
+                <img src="/assets/search.svg" draggable="false" />
+            </button>
         </form>
 
-        <button type="button">Favorites</button>
+        <button type="button" className="btn-icon">
+            <img src="/assets/heart.svg" draggable="false" />
+        </button>
     </div>
     )
 }
