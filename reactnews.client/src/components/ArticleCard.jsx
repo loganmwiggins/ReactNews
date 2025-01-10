@@ -3,14 +3,12 @@ import '../stylesheets/ArticleCard.css';
 
 function ArticleCard({key, imagePath, title, author, dateTime, description, url}) {
 
-    // function openArticle(articleUrl) {
-    //     window.open(articleUrl, "_blank");
-    // }
-    // onClick={openArticle(url)}
-    
+    function openArticle(articleUrl) {
+        window.open(articleUrl, "_blank");
+    }
+
     return (
-        <div className="news-item">
-            <p>{key}</p>
+        <div className="news-item" onClick={() => openArticle(url)}>
             <img className="news-image" src={imagePath} alt="Article image" draggable="false" />
             <div className="news-title">{title}</div>
             
