@@ -9,11 +9,12 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1rem 1.5rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 .news-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 1rem rgba(40, 201, 255, .5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 1rem rgba(0, 216, 255, .75);
+    transition: transform .5s ease-in-out, box-shadow .5s ease-in-out;
 }
 
 .news-item-content {
