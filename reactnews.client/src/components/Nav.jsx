@@ -26,6 +26,12 @@ function Nav() {
         }
     };
 
+    const handleDirectory = (topic) => {
+        if (topic == "Home") { navigate("/"); }
+        else if (topic == "Favorites") { navigate("/favorites"); }
+        else { navigate(`/results?query=${topic}`); }
+    }
+
     const formattedDate = currentDateTime.toLocaleDateString("en-US", {
         weekday: 'short',
         month: 'short',
@@ -58,15 +64,15 @@ function Nav() {
             {/* Directory Row */}
             <div className="directory-row">
                 <div className="directory-btns">
-                    <button>Home</button>
-                    <button>My Favorites</button>
+                    <button type="button" onClick={() => handleDirectory("Home")}>Home</button>
+                    <button type="button" onClick={() => handleDirectory("Favorites")}>My Favorites</button>
                     <span>|</span>
-                    <button type="submit" value="United States" className="">U.S.</button>
-                    <button type="submit" value="Technology" className="">Technology</button>
-                    <button type="submit" value="Entertainment" className="">Entertainment</button>
-                    <button type="submit" value="Sports" className="">Sports</button>
-                    <button type="submit" value="Science" className="">Science</button>
-                    <button type="submit" value="Health" className="">Health</button>
+                    <button type="button" onClick={() => handleDirectory("United States")}>U.S.</button>
+                    <button type="button" onClick={() => handleDirectory("Technology")}>Tech</button>
+                    <button type="button" onClick={() => handleDirectory("Entertainment")}>Entertainment</button>
+                    <button type="button" onClick={() => handleDirectory("Sports")}>Sports</button>
+                    <button type="button" onClick={() => handleDirectory("Science")}>Science</button>
+                    <button type="button" onClick={() => handleDirectory("Health")}>Health</button>
                 </div>
                 
                 <form onSubmit={handleSearch} className="search-container">
