@@ -9,6 +9,7 @@
     gap: 1rem;
 }
 
+
 /* Main Row */
 .main-row {
     width: 100%;
@@ -62,13 +63,19 @@
         border-radius: .5rem;
         font-size: 1rem;
         cursor: pointer;
-        transition: background .3s ease-in-out, padding .3s ease-in-out, box-shadow .3s ease-in-out;
+        transition: 
+            background .3s ease-in-out, 
+            padding .3s ease-in-out, 
+            box-shadow .3s ease-in-out;
     }
     button:hover {
         background: linear-gradient(to right bottom, rgba(15, 15, 15, .8), rgba(15, 15, 15, 0));
         padding: .25rem 1rem;
         box-shadow: 0 0 1.5rem rgba(0, 216, 255, .5);
-        transition: background .5s ease-in-out, padding .5s ease-in-out, box-shadow .5s ease-in-out;
+        transition: 
+            background .5s ease-in-out, 
+            padding .5s ease-in-out, 
+            box-shadow .5s ease-in-out;
     }
 }
 
@@ -86,11 +93,15 @@
     padding: .5rem 1rem;
     border-radius: 5rem;
     font-size: 1rem;
-    transition: box-shadow .3s ease-in-out, border .3s ease-in-out;
+    transition: 
+        box-shadow .3s ease-in-out, 
+        border .3s ease-in-out;
 }
 .searchbar:focus {
     box-shadow: 0 0 1rem rgba(0, 216, 255, .5);
     outline: none;
     border: 1px solid rgba(0, 216, 255, .75);
-    transition: box-shadow .5s ease-in-out, border .5s ease-in-out;
+    transition: 
+        box-shadow .5s ease-in-out, 
+        border .5s ease-in-out;
 }
