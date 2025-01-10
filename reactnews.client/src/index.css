@@ -95,7 +95,8 @@ button:focus-visible {
   --footer-background: #333;
   --footer-text: #fff;
   --accent-red: #e02b29;
-  --accent-blue: rgb(40, 201, 255);
+  /* --accent-blue: rgb(40, 201, 255); */
+  --accent-blue: rgb(0, 216, 255);
   --navbar: #000;
 }
 
@@ -132,6 +133,7 @@ html {
   }
   h1 {
     text-align: left;
+    /* color: var(--accent-blue); */
   }
 }
 
