@@ -23,6 +23,7 @@ namespace ReactNews.Server.Controllers
                 Author = favoriteArticle.Author,
                 ImagePath = favoriteArticle.ImagePath,
                 DateTime = favoriteArticle.DateTime,
+                Source = favoriteArticle.Source,
             };
             _db.Articles.Add(Newarticle);
             await _db.SaveChangesAsync();
