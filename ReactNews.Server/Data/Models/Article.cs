@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 //using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-namespace ReactNews.Server.Data.Models{
-
-public class Article
+namespace ReactNews.Server.Data.Models
+{
+    public class Article
     {
         public int ArticleId { get; set; }
         [Required]
@@ -19,5 +19,5 @@ public class Article
         public string? ImagePath { get; set; }
         public string?  Source { get; set; }
 
-}
+    }
 }

@@ -37,6 +37,7 @@ function HomeFeed() {
             dateTime={article.dateTime}
             description={article.description}
             url={article.url}
+            source={article.source}
         />
     );
       
