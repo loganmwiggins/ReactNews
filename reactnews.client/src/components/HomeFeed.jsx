@@ -15,10 +15,12 @@ function HomeFeed() {
                     throw new Error(`Response status: ${response.status}`);
                 }
                 const json = await response.json();
+                console.log(json);
 
                 setTopArticlesJson(json);
             }
             catch (error) {
+                alert(error.message);
                 console.error(error.message);
             }
         }
@@ -34,6 +36,7 @@ function HomeFeed() {
             author={article.author}
             dateTime={article.dateTime}
             description={article.description}
+            url={article.url}
         />
     );
       

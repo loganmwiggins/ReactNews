@@ -10,11 +10,13 @@ function SearchResults() {
     const [articlesJson, setArticlesJson] = useState([]);
     const url = "https://localhost:7081/api/SearchedArticles";
     
+    // useEffect to listen for changes to 'query'
     useEffect(()=>{
-        async function getSearchedArticles() {
+        async function fetchSearchedArticles() {
             try {
                 const response = await fetch(`${url}/${query}`);
                 if (!response.ok) {
+                    alert(response.status);
                     throw new Error(`Response status: ${response.status}`);
                 }
                 const json = await response.json();
@@ -22,12 +24,16 @@ function SearchResults() {
                 setArticlesJson(json);
             }
             catch (error) {
+                alert(error.message);
                 console.error(error.message);
             }
         }
 
-        getSearchedArticles()
-    }, []);
+        // Call the fetch function whenever the query changes
+        if (query) {
+            fetchSearchedArticles()
+        }
+    }, [query]);    // Add 'query' as a dependency
 
     const searchedArticles = articlesJson.map((article) => 
         <ArticleCard 
@@ -44,7 +50,13 @@ function SearchResults() {
         <div>
             <h1>"{query}"</h1>
             <div className="news-container">
-                {searchedArticles}
+                {
+                    searchedArticles.length > 0 ? (
+                        searchedArticles
+                    ) : (
+                        <p>No articles found for "{query}"</p>
+                    )
+                }
             </div>
         </div>
     );

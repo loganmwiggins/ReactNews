@@ -1,7 +1,13 @@
 import React from 'react';
 import '../stylesheets/ArticleCard.css';
 
-function ArticleCard({key, imagePath, title, author, dateTime, description}) {
+function ArticleCard({key, imagePath, title, author, dateTime, description, url}) {
+
+    // function openArticle(articleUrl) {
+    //     window.open(articleUrl, "_blank");
+    // }
+    // onClick={openArticle(url)}
+    
     return (
         <div className="news-item">
             <p>{key}</p>
