@@ -23,6 +23,7 @@ function Nav() {
         e.preventDefault();
         if (searchQuery.trim()) {
             navigate(`/results?query=${searchQuery}`); // Navigate to the results page with the search query
+            setSearchQuery(""); // Clear search input
         }
     };
 
@@ -30,6 +31,8 @@ function Nav() {
         if (topic == "Home") { navigate("/"); }
         else if (topic == "Favorites") { navigate("/favorites"); }
         else { navigate(`/results?query=${topic}`); }
+
+        setSearchQuery(""); // Clear search input
     }
 
     const formattedDate = currentDateTime.toLocaleDateString("en-US", {
@@ -78,14 +81,12 @@ function Nav() {
                 <form onSubmit={handleSearch} className="search-container">
                     <input 
                         type="text"
+                        id="searchbar"
                         className="searchbar" 
                         placeholder="Search for articles ..." 
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    {/* <button type="submit" className="btn-icon">
-                        <img src="/assets/search.svg" draggable="false" />
-                    </button> */}
                 </form>
             </div>
         </div>

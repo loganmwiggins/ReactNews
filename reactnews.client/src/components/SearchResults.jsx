@@ -49,7 +49,10 @@ function SearchResults() {
 
     return (
         <div>
-            <h1>"{query}"</h1>
+            <div className="page-header">
+                <img src="/assets/search.svg" draggable="false" />
+                <h1>{query}</h1>
+            </div>
             <div className="news-container">
                 {
                     searchedArticles.length > 0 ? (

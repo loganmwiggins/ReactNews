@@ -44,7 +44,10 @@ function HomeFeed() {
     // HTML
     return (
     <>
-        <h1>Today's Top Stories</h1>
+        <div className="page-header">
+            <img src="/assets/home.svg" draggable="false" />
+            <h1>Today's Top Stories</h1>
+        </div>
 
         <div className="news-container">
             {topArticles}
