@@ -27,7 +27,7 @@ function Nav() {
             <input 
                 type="text"
                 className="searchbar" 
-                placeholder="Search for articles" 
+                placeholder="Search for articles ..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />

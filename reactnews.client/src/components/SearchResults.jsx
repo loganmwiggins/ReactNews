@@ -42,7 +42,7 @@ function SearchResults() {
 
     return (
         <div>
-            <h1>Search Results for: {query}</h1>
+            <h1>"{query}"</h1>
             <div className="news-container">
                 {searchedArticles}
             </div>
