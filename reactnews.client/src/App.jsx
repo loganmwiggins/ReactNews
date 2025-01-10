@@ -10,6 +10,7 @@ import Favorites from './components/Favorites';
 function App() {
     return (
         <BrowserRouter>
+            <div className="body-gradient"></div>
             <div>
                 <Nav />
 

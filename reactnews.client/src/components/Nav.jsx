@@ -68,7 +68,7 @@ function Nav() {
             <div className="directory-row">
                 <div className="directory-btns">
                     <button type="button" onClick={() => handleDirectory("Home")}>Home</button>
-                    <button type="button" onClick={() => handleDirectory("Favorites")}>My Favorites</button>
+                    <button type="button" onClick={() => handleDirectory("Favorites")}>Favorites</button>
                     <span>|</span>
                     <button type="button" onClick={() => handleDirectory("United States")}>U.S.</button>
                     <button type="button" onClick={() => handleDirectory("Technology")}>Tech</button>

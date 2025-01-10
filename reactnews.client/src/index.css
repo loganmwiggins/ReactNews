@@ -90,13 +90,9 @@ button:focus-visible {
   --text-secondary: #eee;
   --text-third: #ddd;
   --text-fourth: #bbb;
-  --navbar-background: rgba(51, 51, 51, .5);
-  --navbar-text: #fff;
-  --footer-background: #333;
-  --footer-text: #fff;
   --accent-red: #e02b29;
-  /* --accent-blue: rgb(40, 201, 255); */
   --accent-blue: rgb(0, 216, 255);
+  --card-color: linear-gradient(to bottom right, rgb(17, 17, 17, .8), rgba(17, 17, 17, .4));
   --navbar: #000;
 }
 
@@ -106,6 +102,16 @@ html {
   /* font-size: 62.5%; */
 }
 
+.body-gradient {
+  position: fixed;
+  width: 100vw;
+  height: 100svh;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(0, 216, 255, .75), #242424);
+  top: 0;
+  right: 0;
+  opacity: .15;
+}
 
 .btn-icon {
   display: flex;
