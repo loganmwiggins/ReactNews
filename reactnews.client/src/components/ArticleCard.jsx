@@ -1,7 +1,7 @@
 import React from 'react';
 import '../stylesheets/ArticleCard.css';
 
-function ArticleCard({key, imagePath, title, author, dateTime, description, url}) {
+function ArticleCard({imagePath, title, author, dateTime, description, url}) {
 
     function openArticle(articleUrl) {
         window.open(articleUrl, "_blank");

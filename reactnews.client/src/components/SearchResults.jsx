@@ -37,12 +37,13 @@ function SearchResults() {
 
     const searchedArticles = articlesJson.map((article) => 
         <ArticleCard 
-            key={article.imagePath}
+            key={article.url}
             imagePath={article.imagePath}
             title={article.title}
             author={article.author}
             dateTime={article.dateTime}
             description={article.description}
+            url={article.url}
         />
     );
 

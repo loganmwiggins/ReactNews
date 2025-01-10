@@ -15,7 +15,7 @@ function HomeFeed() {
                     throw new Error(`Response status: ${response.status}`);
                 }
                 const json = await response.json();
-                console.log(json);
+                // console.log(json);
 
                 setTopArticlesJson(json);
             }
@@ -30,7 +30,7 @@ function HomeFeed() {
 
     const topArticles = topArticlesJson.map((article) => 
         <ArticleCard 
-            key={article.imagePath}
+            key={article.url}
             imagePath={article.imagePath}
             title={article.title}
             author={article.author}
