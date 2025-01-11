@@ -24,6 +24,15 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
 
                 setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.url !== url));
             } else {
+                // Validate article data
+                if (title == null) title = "";
+                if (author == null) author = "";
+                if (dateTime == null) dateTime = "";
+                if (description == null) description = "";
+                if (imagePath == null) imagePath = "";
+                if (url == null) url = "";
+                if (source == null) source = "";
+
                 // Add article to favorites
                 const articleData = { title, author, dateTime, description, imagePath, url, source };
                 await fetch("https://localhost:7081/api/Favorites/Add", {
@@ -33,7 +42,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     },
                     body: JSON.stringify(articleData),
                 });
-                
+
                 setFavorites((prevFavorites) => [...prevFavorites, articleData]);
             }
         } catch (error) {
