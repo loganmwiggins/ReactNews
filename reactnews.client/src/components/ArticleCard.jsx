@@ -21,6 +21,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     },
                     body: JSON.stringify(url),
                 });
+
                 setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.url !== url));
             } else {
                 // Add article to favorites
@@ -32,6 +33,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     },
                     body: JSON.stringify(articleData),
                 });
+                
                 setFavorites((prevFavorites) => [...prevFavorites, articleData]);
             }
         } catch (error) {
@@ -40,6 +42,8 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
         }
     }
 
+
+    
     return (
         <div className="news-item" onClick={() => openArticle(url)}>
             <div className="news-item-content">
