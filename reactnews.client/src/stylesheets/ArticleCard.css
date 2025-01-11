@@ -63,6 +63,7 @@
 
 .news-item-btns {
     button {
+        filter: none;
         transition: scale .2s ease-in-out;
     }
     button:hover {
