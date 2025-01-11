@@ -41,7 +41,13 @@ function Favorites() {
     </div>
 
     <div className="news-container">
-      {favArticles}
+    {
+      favArticles.length > 0 ? (
+        favArticles
+      ) : (
+        <p className="empty-msg">No favorited articles yet. Click an article's <img src="/assets/heart.svg" draggable="false" /> icon to save it here.</p>
+      )
+    }
     </div>
   </>
   );

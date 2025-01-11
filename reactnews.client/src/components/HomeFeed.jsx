@@ -53,7 +53,13 @@ function HomeFeed() {
         </div>
 
         <div className="news-container">
-            {topArticles}
+        {
+            topArticles.length > 0 ? (
+                topArticles
+            ) : (
+                <p className="empty-msg">Loading ...</p>
+            )
+        }
         </div>
     </>
     );

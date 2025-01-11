@@ -6,34 +6,6 @@ function SearchResults() {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('query');
 
-    // const [articlesJson, setArticlesJson] = useState([]);
-    // const url = "https://localhost:7081/api/SearchedArticles";
-    
-    // // useEffect to listen for changes to 'query'
-    // useEffect(()=>{
-    //     async function fetchSearchedArticles() {
-    //         try {
-    //             const response = await fetch(`${url}/${query}`);
-    //             if (!response.ok) {
-    //                 alert(response.status);
-    //                 throw new Error(`Response status: ${response.status}`);
-    //             }
-    //             const json = await response.json();
-
-    //             setArticlesJson(json);
-    //         }
-    //         catch (error) {
-    //             alert(error.message);
-    //             console.error(error.message);
-    //         }
-    //     }
-
-    //     // Call the fetch function whenever the query changes
-    //     if (query) {
-    //         fetchSearchedArticles()
-    //     }
-    // }, [query]);    // Add 'query' as a dependency
-
     const [articles, setArticles] = useState([]);   // External API articles
     const [favorites, setFavorites] = useState([]); // Favorited articles from DB
 
@@ -90,7 +62,7 @@ function SearchResults() {
                 searchedArticles.length > 0 ? (
                     searchedArticles
                 ) : (
-                    <p>No articles found for "{query}"</p>
+                    <p className="empty-msg">No articles found for "{query}".</p>
                 )
             }
             </div>

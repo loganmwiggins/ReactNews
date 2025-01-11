@@ -149,3 +149,16 @@ button:focus-visible {
   margin: 0 auto;
   padding: 2rem 0;
 }
+
+.empty-msg {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  color: var(--text-fourth);
+
+  img {
+    width: 1rem;
+    margin: 0 .5rem;
+    filter: invert(81%) sepia(0%) saturate(1%) hue-rotate(250deg) brightness(93%) contrast(94%);
+  }
+}
