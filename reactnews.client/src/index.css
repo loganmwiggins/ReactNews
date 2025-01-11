@@ -85,15 +85,14 @@ button:focus-visible {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  --background-color: #121212;
+  /* --background-color: #121212; */
   --text-primary: #fff;
   --text-secondary: #eee;
   --text-third: #ddd;
   --text-fourth: #bbb;
-  --accent-red: #e02b29;
   --accent-blue: rgb(0, 216, 255);
   --card-color: linear-gradient(to bottom right, rgb(17, 17, 17, .8), rgba(17, 17, 17, .4));
-  --navbar: #000;
+  --card-hvr-color: linear-gradient(to right bottom, rgba(17, 17, 17, .8), rgba(17, 17, 17, 0));
 }
 
 * { margin: 0; padding: 0; }

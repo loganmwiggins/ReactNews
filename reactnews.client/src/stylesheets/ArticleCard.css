@@ -10,13 +10,16 @@
     padding: 1rem 1.5rem;
     cursor: pointer;
     transition: 
+        background .3s ease-in-out,
         transform .3s ease-in-out, 
         box-shadow .3s ease-in-out;
 }
 .news-item:hover {
+    background: var(--card-hvr-color);
     transform: translateY(-2px);
     box-shadow: 0 0 1rem rgba(0, 216, 255, .75);
     transition: 
+        background .2s ease-in-out,
         transform .2s ease-in-out, 
         box-shadow .2s ease-in-out;
 }
