@@ -30,7 +30,7 @@ function SearchResults() {
                 setHidden(hiddenData);
             } 
             catch (error) {
-                alert(error.message);
+                //alert(error.message);
                 console.error("Error fetching data:", error);
             }
         }
