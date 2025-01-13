@@ -10,7 +10,7 @@ using NewsAPI.Constants;
 namespace ReactNews.Server.Controllers
 {
     [ApiController]
-    [Route("/api")]
+    [Route("/api/[controller]")]
     public class HomeFeedController : Controller
     {
         [HttpGet("SearchedArticles/{query}")]

@@ -13,7 +13,7 @@ function SearchResults() {
         async function fetchArticlesAndFavorites() {
             try {
                 // Fetch articles from external API
-                const articlesResponse = await fetch(`https://localhost:7081/api/SearchedArticles/${query}`);
+                const articlesResponse = await fetch(`https://localhost:7081/api/HomeFeed/SearchedArticles/${query}`);
                 const articlesData = await articlesResponse.json();
 
                 // Fetch favorited articles from backend
