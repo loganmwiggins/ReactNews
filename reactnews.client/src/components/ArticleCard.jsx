@@ -7,7 +7,9 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
         window.open(articleUrl, "_blank");
     }
 
-    function shareArticle() {
+    function shareArticle(event) {
+        event.stopPropagation(); // Prevent triggering the `onClick` for opening the article
+
         if (navigator.share) {
             navigator
                 .share({
