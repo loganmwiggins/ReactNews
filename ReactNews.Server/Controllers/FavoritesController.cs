@@ -15,9 +15,9 @@ namespace ReactNews.Server.Controllers
 
 
         [HttpPost("Add")]
-        public async Task<IActionResult> AddArticle([FromBody] Article favoriteArticle)
+        public async Task<IActionResult> AddArticle([FromBody] FavoriteArticle favoriteArticle)
         {
-            var Newarticle = new ReactNews.Server.Data.Models.Article
+            var Newarticle = new ReactNews.Server.Data.Models.FavoriteArticle
             {
                 Title = favoriteArticle.Title,
                 Url = favoriteArticle.Url,
@@ -27,7 +27,7 @@ namespace ReactNews.Server.Controllers
                 DateTime = favoriteArticle.DateTime,
                 Source = favoriteArticle.Source
             };
-            _db.Articles.Add(Newarticle);
+            _db.FavoriteArticles.Add(Newarticle);
             await _db.SaveChangesAsync();
             return Ok();
         }
@@ -35,9 +35,9 @@ namespace ReactNews.Server.Controllers
         [HttpDelete("Remove")]
         public async Task<IActionResult> RemoveArticle([FromBody] string url)
         {
-            var article = await _db.Articles.FirstOrDefaultAsync(a => a.Url == url);
+            var article = await _db.FavoriteArticles.FirstOrDefaultAsync(a => a.Url == url);
 #pragma warning disable CS8604 // Possible null reference argument.
-            _db.Articles.Remove(article);
+            _db.FavoriteArticles.Remove(article);
 #pragma warning restore CS8604 // Possible null reference argument.
             await _db.SaveChangesAsync();
             return Ok();
@@ -48,7 +48,7 @@ namespace ReactNews.Server.Controllers
         public async Task<IActionResult> GetFavorites()
         {
 
-            var favorites = await _db.Articles.ToListAsync();
+            var favorites = await _db.FavoriteArticles.ToListAsync();
             return Ok(favorites);
 
         }

@@ -10,7 +10,8 @@ namespace ReactNews.Server.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         // Tables
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<FavoriteArticle> FavoriteArticles { get; set; }
+        public DbSet<HiddenArticle> HiddenArticles { get; set; }
 
         // Config
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

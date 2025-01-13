@@ -21,13 +21,13 @@ namespace ReactNews.Server.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ReactNews.Server.Data.Models.Article", b =>
+            modelBuilder.Entity("ReactNews.Server.Data.Models.FavoriteArticle", b =>
                 {
-                    b.Property<int>("ArticleId")
+                    b.Property<int>("FavoriteArticleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ArticleId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FavoriteArticleId"));
 
                     b.Property<string>("Author")
                         .HasColumnType("text");
@@ -53,9 +53,46 @@ namespace ReactNews.Server.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("text");
 
-                    b.HasKey("ArticleId");
+                    b.HasKey("FavoriteArticleId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("FavoriteArticles");
+                });
+
+            modelBuilder.Entity("ReactNews.Server.Data.Models.HiddenArticle", b =>
+                {
+                    b.Property<int>("HiddenArticleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("HiddenArticleId"));
+
+                    b.Property<string>("Author")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DateTime")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("text");
+
+                    b.HasKey("HiddenArticleId");
+
+                    b.ToTable("HiddenArticles");
                 });
 #pragma warning restore 612, 618
         }
