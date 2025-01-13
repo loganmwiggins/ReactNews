@@ -30,6 +30,7 @@ function Nav() {
     const handleDirectory = (topic) => {
         if (topic == "Home") { navigate("/"); }
         else if (topic == "Favorites") { navigate("/favorites"); }
+        else if (topic == "Hidden") { navigate("/hidden"); }
         else { navigate(`/results?query=${topic}`); }
 
         setSearchQuery(""); // Clear search input
@@ -69,6 +70,7 @@ function Nav() {
                 <div className="directory-btns">
                     <button type="button" onClick={() => handleDirectory("Home")}>Home</button>
                     <button type="button" onClick={() => handleDirectory("Favorites")}>Favorites</button>
+                    <button type="button" onClick={() => handleDirectory("Hidden")}>Hidden</button>
                     <span>|</span>
                     <button type="button" onClick={() => handleDirectory("United States")}>U.S.</button>
                     <button type="button" onClick={() => handleDirectory("Technology")}>Tech</button>

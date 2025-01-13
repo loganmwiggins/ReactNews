@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import HomeFeed from './components/HomeFeed';
 import SearchResults from './components/SearchResults';
 import Favorites from './components/Favorites';
+import Hidden from './components/Hidden';
 
 function App() {
     return (
@@ -24,6 +25,9 @@ function App() {
 
                     {/* Favorites route */}
                     <Route path="/favorites" element={<Favorites />} />
+
+                    {/* Hidden route */}
+                    <Route path="/hidden" element={<Hidden />} />
                 </Routes>
             </div>
         </BrowserRouter>
