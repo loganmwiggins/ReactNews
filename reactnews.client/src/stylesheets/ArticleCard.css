@@ -64,6 +64,10 @@
 }
 
 .news-item-btns {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
     button {
         filter: none;
         transition: scale .2s ease-in-out;
