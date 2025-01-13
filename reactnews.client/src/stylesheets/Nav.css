@@ -92,6 +92,11 @@
             padding .2s ease-in-out, 
             box-shadow .2s ease-in-out;
     }
+
+    img {
+        width: 1rem;
+        filter: var(--filter-white);
+    }
 }
 
 .search-container {
