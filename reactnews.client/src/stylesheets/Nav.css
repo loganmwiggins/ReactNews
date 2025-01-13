@@ -38,12 +38,8 @@
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .date {
@@ -59,10 +55,10 @@
 /* Filter Row */
 .directory-row {
     display: flex;
+    flex-flow: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: .5rem;
-
+    gap: 1rem;
 }
 
 .directory-btns {
@@ -125,4 +121,26 @@
     transition: 
         box-shadow .5s ease-in-out, 
         border .5s ease-in-out;
+}
+
+
+
+/* LESS THAN 800px */
+@media (max-width: 800px) {
+    .main-row {
+        flex-direction: column;
+        align-items: start;
+        gap: 1rem;
+    }
+
+    .date {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .directory-btns { overflow-x: scroll; }
+    .directory-btns::-webkit-scrollbar { display: none; }
+
+    .search-container, .searchbar { width: 100%; }
 }

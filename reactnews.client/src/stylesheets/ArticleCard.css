@@ -77,3 +77,24 @@
         transition: scale .2s ease-in-out;
     }
 }
+
+
+
+/* LESS THAN 800px */
+@media (max-width: 800px) {
+    .news-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .news-item-content {
+        flex-direction: column;
+
+        img {
+            max-width: 100%;
+            margin-bottom: 0;
+        }
+    }
+
+    .news-item-btns { width: 100%; }
+}

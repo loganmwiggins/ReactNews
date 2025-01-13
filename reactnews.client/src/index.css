@@ -53,19 +53,14 @@
     width: 1.75rem;
     filter: var(--filter-white);
   }
-  h1 {
-    text-align: left;
-    /* color: var(--accent-blue); */
-  }
+  h1 { text-align: left; }
 }
 
 /* News Feed */
 .news-container {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   gap: 1rem;
-  /* justify-content: space-between; */
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -80,5 +75,15 @@
     width: 1rem;
     margin: 0 .5rem;
     filter: invert(81%) sepia(0%) saturate(1%) hue-rotate(250deg) brightness(93%) contrast(94%);
+  }
+}
+
+
+
+/* LESS THAN 800px */
+@media (max-width: 800px) {
+  .page-header {
+    img { width: 1.5rem; }
+    h1 { font-size: 1.75rem; }
   }
 }
