@@ -118,6 +118,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     className="btn-icon" 
                     style={isFavorited ? {display: "none"} : {}}
                     onClick={toggleHidden}
+                    title="Hide this article"
                 >
                     <img 
                         src={isHidden ? "/assets/hidden-filled.svg" : "/assets/hidden.svg"} 
@@ -129,6 +130,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     className="btn-icon"
                     style={isHidden ? {display: "none"} : {}}
                     onClick={toggleFavorite}
+                    title="Favorite this article"
                 >
                     <img
                         src={isFavorited ? "/assets/heart-filled.svg" : "/assets/heart.svg"}

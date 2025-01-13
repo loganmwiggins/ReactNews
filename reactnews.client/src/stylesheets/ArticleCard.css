@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 4rem;
     background: var(--card-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    
+
     button {
         filter: none;
         transition: scale .2s ease-in-out;

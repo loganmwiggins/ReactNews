@@ -54,7 +54,7 @@ function Nav() {
         <div className="nav-container">
             {/* Main Row */}
             <div className="main-row">
-                <div className="title">
+                <div className="title" title="by Vraj Patel & Logan Wiggins">
                     <img src="/assets/react.svg" draggable="false" />
                     <h3>ReactNews</h3>
                 </div>
