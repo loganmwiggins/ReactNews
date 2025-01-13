@@ -7,6 +7,21 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
         window.open(articleUrl, "_blank");
     }
 
+    function shareArticle() {
+        if (navigator.share) {
+            navigator
+                .share({
+                    title: title,
+                    text: `Check out this article: ${title}`,
+                    url: url,
+                })
+                .then(() => console.log("Article shared successfully!"))
+                .catch((error) => console.error("Error sharing article:", error));
+        } else {
+            alert("Sharing is not supported on your browser. Please copy the URL manually.");
+        }
+    }
+
     // Add or remove article from favorites
     async function toggleFavorite(event) {
         event.stopPropagation(); // Prevent triggering the `onClick` for opening the article
@@ -137,6 +152,14 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                         style={isFavorited ? {filter: "none"} : {}}
                         draggable="false"
                     />
+                </button>
+                <button 
+                    type="button" 
+                    className="btn-icon"
+                    onClick={shareArticle}
+                    title="Share this article"
+                >
+                    <img src="/assets/share.svg" draggable="false" />
                 </button>
             </div>
         </div>
