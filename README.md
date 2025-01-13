@@ -2,20 +2,22 @@
 
 A modern news aggregator app built with React and .NET Core, featuring the ability to favorite, hide, and share articles. This project also integrates with a PostgreSQL database to manage user interactions such as saved favorites and hidden articles.
 
-## Contents
+<br>
+
+## README Contents
 
 1. [Project Overview](#project-overview)
 2. [Features](#features)
 3. [Setup Instructions](#setup-instructions)
 4. [Technology Stack](#technology-stack)
 
----
+<br>
 
 ## Project Overview
 
 **ReactNews** is a web application designed to help users browse, favorite, hide, and share news articles seamlessly. The app offers a clean UI for effortless navigation and supports personalization through user-defined interactions.
 
----
+<br>
 
 ## Features
 
@@ -25,7 +27,7 @@ A modern news aggregator app built with React and .NET Core, featuring the abili
 - **Share Articles**: Share articles via email using the built-in `mailto:` feature.
 - **Responsive Design**: Optimized for desktop and mobile devices.
 
----
+<br>
 
 ## Setup Instructions
 
@@ -74,7 +76,7 @@ Follow these steps to set up and run the project locally:
      npm start
      ```
 
----
+<br>
 
 ## Technology Stack
 
