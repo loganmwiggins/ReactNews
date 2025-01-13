@@ -1,51 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
 import ArticleCard from './ArticleCard';
 
 function SearchResults() {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('query');
 
-    const [articlesJson, setArticlesJson] = useState([]);
-    const url = "https://localhost:7081/api/SearchedArticles";
-    
-    // useEffect to listen for changes to 'query'
-    useEffect(()=>{
-        async function fetchSearchedArticles() {
-            try {
-                const response = await fetch(`${url}/${query}`);
-                if (!response.ok) {
-                    alert(response.status);
-                    throw new Error(`Response status: ${response.status}`);
-                }
-                const json = await response.json();
+    const [articles, setArticles] = useState([]);   // External API articles
+    const [favorites, setFavorites] = useState([]); // Favorited articles from DB
 
-                setArticlesJson(json);
-            }
+    useEffect(() => {
+        async function fetchArticlesAndFavorites() {
+            try {
+                // Fetch articles from external API
+                const articlesResponse = await fetch(`https://localhost:7081/api/SearchedArticles/${query}`);
+                const articlesData = await articlesResponse.json();
+
+                // Fetch favorited articles from backend
+                const favoritesResponse = await fetch("https://localhost:7081/api/Favorites/GetFavorites");
+                const favoritesData = await favoritesResponse.json();
+
+                setArticles(articlesData);
+                setFavorites(favoritesData);
+            } 
             catch (error) {
                 alert(error.message);
-                console.error(error.message);
+                console.error("Error fetching data:", error);
             }
         }
 
         // Call the fetch function whenever the query changes
         if (query) {
-            fetchSearchedArticles()
+            fetchArticlesAndFavorites();
         }
-    }, [query]);    // Add 'query' as a dependency
+    }, [query]);
 
-    const searchedArticles = articlesJson.map((article) => 
+    // Helper function to check if an article is favorited
+    const isFavorited = (articleUrl) => {
+        return favorites.some((fav) => fav.url === articleUrl);
+    };
+
+    const searchedArticles = articles.map((article) => 
         <ArticleCard 
             key={article.url}
-            imagePath={article.imagePath}
-            title={article.title}
-            author={article.author}
-            dateTime={article.dateTime}
-            description={article.description}
-            url={article.url}
+            {...article}
+            isFavorited={isFavorited(article.url)}
+            setFavorites={setFavorites}
         />
     );
+
+
 
     return (
         <div>
@@ -54,13 +58,13 @@ function SearchResults() {
                 <h1>{query}</h1>
             </div>
             <div className="news-container">
-                {
-                    searchedArticles.length > 0 ? (
-                        searchedArticles
-                    ) : (
-                        <p>No articles found for "{query}"</p>
-                    )
-                }
+            {
+                searchedArticles.length > 0 ? (
+                    searchedArticles
+                ) : (
+                    <p className="empty-msg">No articles found for "{query}".</p>
+                )
+            }
             </div>
         </div>
     );

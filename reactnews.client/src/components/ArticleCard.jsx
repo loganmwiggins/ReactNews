@@ -1,12 +1,58 @@
 import React from 'react';
 import '../stylesheets/ArticleCard.css';
 
-function ArticleCard({imagePath, title, author, dateTime, description, url}) {
+function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites}) {
 
     function openArticle(articleUrl) {
         window.open(articleUrl, "_blank");
     }
 
+    // Add or remove article from favorites
+    async function toggleFavorite(event) {
+        event.stopPropagation(); // Prevent triggering the `onClick` for opening the article
+
+        try {
+            if (isFavorited) {
+                // Remove article from favorites
+                await fetch("https://localhost:7081/api/Favorites/Remove", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(url),
+                });
+
+                setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.url !== url));
+            } else {
+                // Validate article data
+                if (title == null) title = "";
+                if (author == null) author = "";
+                if (dateTime == null) dateTime = "";
+                if (description == null) description = "";
+                if (imagePath == null) imagePath = "";
+                if (url == null) url = "";
+                if (source == null) source = "";
+
+                // Add article to favorites
+                const articleData = { title, author, dateTime, description, imagePath, url, source };
+                await fetch("https://localhost:7081/api/Favorites/Add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(articleData),
+                });
+
+                setFavorites((prevFavorites) => [...prevFavorites, articleData]);
+            }
+        } catch (error) {
+            alert("Error toggling favorite:", error);
+            console.error("Error toggling favorite:", error);
+        }
+    }
+
+
+    
     return (
         <div className="news-item" onClick={() => openArticle(url)}>
             <div className="news-item-content">
@@ -23,8 +69,13 @@ function ArticleCard({imagePath, title, author, dateTime, description, url}) {
                 </div>
             </div>
             <div className="news-item-btns">
-                <button type="button" className="btn-icon">
-                    <img src="/assets/heart.svg" draggable="false" />
+                <button type="button" className="btn-icon" onClick={toggleFavorite}>
+                    <img
+                        src={isFavorited ? "/assets/heart-filled.svg" : "/assets/heart.svg"}
+                        style={isFavorited ? {filter: "none"} : {}}
+                        alt="Favorite"
+                        draggable="false"
+                    />
                 </button>
             </div>
         </div>

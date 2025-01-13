@@ -6,6 +6,8 @@ using ReactNews.Server.Data;
 
 namespace ReactNews.Server.Controllers
 {
+    [ApiController]
+    [Route("/api/[controller]")]
     public class FavoritesController(AppDbContext dbContext) : Controller
     {
         private readonly ILogger<FavoritesController> _logger;
@@ -23,6 +25,7 @@ namespace ReactNews.Server.Controllers
                 Author = favoriteArticle.Author,
                 ImagePath = favoriteArticle.ImagePath,
                 DateTime = favoriteArticle.DateTime,
+                Source = favoriteArticle.Source
             };
             _db.Articles.Add(Newarticle);
             await _db.SaveChangesAsync();
@@ -41,7 +44,7 @@ namespace ReactNews.Server.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("GetFavorites")]
         public async Task<IActionResult> GetFavorites()
         {
 
