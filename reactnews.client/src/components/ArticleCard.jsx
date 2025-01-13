@@ -41,17 +41,18 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
 
                 setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.url !== url));
             } else {
-                // Validate article data
-                if (title == null) title = "";
-                if (author == null) author = "";
-                if (dateTime == null) dateTime = "";
-                if (description == null) description = "";
-                if (imagePath == null) imagePath = "";
-                if (url == null) url = "";
-                if (source == null) source = "";
 
                 // Add article to favorites
-                const articleData = { title, author, dateTime, description, imagePath, url, source };
+                const articleData = {
+                    title: title || "",
+                    author: author || "",
+                    dateTime: dateTime || "",
+                    description: description || "",
+                    imagePath: imagePath || "",
+                    url: url || "",
+                    source: source || "",
+                };
+
                 await fetch("https://localhost:7081/api/Favorites/Add", {
                     method: "POST",
                     headers: {
@@ -85,17 +86,18 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
 
                 setHidden((prevHidden) => prevHidden.filter((hid) => hid.url !== url));
             } else {
-                // Validate article data
-                if (title == null) title = "";
-                if (author == null) author = "";
-                if (dateTime == null) dateTime = "";
-                if (description == null) description = "";
-                if (imagePath == null) imagePath = "";
-                if (url == null) url = "";
-                if (source == null) source = "";
 
                 // Add article to hidden
-                const articleData = { title, author, dateTime, description, imagePath, url, source };
+                const articleData = {
+                    title: title || "",
+                    author: author || "",
+                    dateTime: dateTime || "",
+                    description: description || "",
+                    imagePath: imagePath || "",
+                    url: url || "",
+                    source: source || "",
+                };
+
                 await fetch("https://localhost:7081/api/Hidden/Add", {
                     method: "POST",
                     headers: {
@@ -140,6 +142,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     <img 
                         src={isHidden ? "/assets/hidden-filled.svg" : "/assets/hidden.svg"} 
                         draggable="false" 
+                        alt="Hidden icon"
                     />
                 </button>
                 <button 
@@ -153,6 +156,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                         src={isFavorited ? "/assets/heart-filled.svg" : "/assets/heart.svg"}
                         style={isFavorited ? {filter: "none"} : {}}
                         draggable="false"
+                        alt="Favorite icon"
                     />
                 </button>
                 <button 

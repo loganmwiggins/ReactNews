@@ -68,7 +68,7 @@ function SearchResults() {
     return (
         <div>
             <div className="page-header">
-                <img src="/assets/search.svg" draggable="false" />
+                <img src="/assets/search.svg" draggable="false" alt="Search Icon" />
                 <h1>{query}</h1>
             </div>
             <div className="news-container">
