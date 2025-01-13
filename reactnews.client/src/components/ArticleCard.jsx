@@ -1,7 +1,7 @@
 import React from 'react';
 import '../stylesheets/ArticleCard.css';
 
-function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites}) {
+function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites, isHidden, setHidden}) {
 
     function openArticle(articleUrl) {
         window.open(articleUrl, "_blank");
@@ -51,6 +51,50 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
         }
     }
 
+    // Add or remove article from hidden
+    async function toggleHidden(event) {
+        event.stopPropagation(); // Prevent triggering the `onClick` for opening the article
+
+        try {
+            if (isHidden) {
+                // Remove article from hidden
+                await fetch("https://localhost:7081/api/Hidden/Remove", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(url),
+                });
+
+                setHidden((prevHidden) => prevHidden.filter((hid) => hid.url !== url));
+            } else {
+                // Validate article data
+                if (title == null) title = "";
+                if (author == null) author = "";
+                if (dateTime == null) dateTime = "";
+                if (description == null) description = "";
+                if (imagePath == null) imagePath = "";
+                if (url == null) url = "";
+                if (source == null) source = "";
+
+                // Add article to hidden
+                const articleData = { title, author, dateTime, description, imagePath, url, source };
+                await fetch("https://localhost:7081/api/Hidden/Add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(articleData),
+                });
+
+                setHidden((prevHidden) => [...prevHidden, articleData]);
+            }
+        } catch (error) {
+            alert("Error toggling hidden:", error);
+            console.error("Error toggling hidden:", error);
+        }
+    }
+
 
     
     return (
@@ -69,10 +113,23 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                 </div>
             </div>
             <div className="news-item-btns">
-                <button type="button" className="btn-icon">
-                    <img src="/assets/hidden.svg" draggable="false" />
+                <button 
+                    type="button" 
+                    className="btn-icon" 
+                    style={isFavorited ? {display: "none"} : {}}
+                    onClick={toggleHidden}
+                >
+                    <img 
+                        src={isHidden ? "/assets/hidden-filled.svg" : "/assets/hidden.svg"} 
+                        draggable="false" 
+                    />
                 </button>
-                <button type="button" className="btn-icon" onClick={toggleFavorite}>
+                <button 
+                    type="button" 
+                    className="btn-icon"
+                    style={isHidden ? {display: "none"} : {}}
+                    onClick={toggleFavorite}
+                >
                     <img
                         src={isFavorited ? "/assets/heart-filled.svg" : "/assets/heart.svg"}
                         style={isFavorited ? {filter: "none"} : {}}

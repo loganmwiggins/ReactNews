@@ -45,7 +45,10 @@ function Favorites() {
       favArticles.length > 0 ? (
         favArticles
       ) : (
-        <p className="empty-msg">No favorited articles yet. Click an article's <img src="/assets/heart.svg" draggable="false" /> icon to save it here.</p>
+        <>
+          <p className="empty-msg">No favorited articles yet.</p>
+          <p className="empty-msg">Click an article's <img src="/assets/heart.svg" draggable="false" /> icon to save it here.</p>
+        </>
       )
     }
     </div>

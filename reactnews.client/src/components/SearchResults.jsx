@@ -8,9 +8,10 @@ function SearchResults() {
 
     const [articles, setArticles] = useState([]);   // External API articles
     const [favorites, setFavorites] = useState([]); // Favorited articles from DB
+    const [hidden, setHidden] = useState([]);   // Hidden articles from DB
 
     useEffect(() => {
-        async function fetchArticlesAndFavorites() {
+        async function fetchAllArticles() {
             try {
                 // Fetch articles from external API
                 const articlesResponse = await fetch(`https://localhost:7081/api/HomeFeed/SearchedArticles/${query}`);
@@ -20,8 +21,13 @@ function SearchResults() {
                 const favoritesResponse = await fetch("https://localhost:7081/api/Favorites/GetFavorites");
                 const favoritesData = await favoritesResponse.json();
 
+                // Fetch hidden articles from backend
+                const hiddenResponse = await fetch("https://localhost:7081/api/Hidden/GetHiddenArticles");
+                const hiddenData = await hiddenResponse.json();
+
                 setArticles(articlesData);
                 setFavorites(favoritesData);
+                setHidden(hiddenData);
             } 
             catch (error) {
                 alert(error.message);
@@ -31,7 +37,7 @@ function SearchResults() {
 
         // Call the fetch function whenever the query changes
         if (query) {
-            fetchArticlesAndFavorites();
+            fetchAllArticles();
         }
     }, [query]);
 
@@ -39,13 +45,21 @@ function SearchResults() {
     const isFavorited = (articleUrl) => {
         return favorites.some((fav) => fav.url === articleUrl);
     };
+    const isHidden = (articleUrl) => {
+        return hidden.some((hid) => hid.url === articleUrl)
+    };
 
-    const searchedArticles = articles.map((article) => 
+    // Filter out hidden articles from list
+    const visibleArticles = articles.filter((article) => !isHidden(article.url));
+
+    const searchedArticles = visibleArticles.map((article) => 
         <ArticleCard 
             key={article.url}
             {...article}
             isFavorited={isFavorited(article.url)}
             setFavorites={setFavorites}
+            isHidden={isHidden(article.url)}
+            setHidden={setHidden}
         />
     );
 
