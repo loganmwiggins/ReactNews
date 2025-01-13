@@ -69,11 +69,13 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                 </div>
             </div>
             <div className="news-item-btns">
+                <button type="button" className="btn-icon">
+                    <img src="/assets/hidden.svg" draggable="false" />
+                </button>
                 <button type="button" className="btn-icon" onClick={toggleFavorite}>
                     <img
                         src={isFavorited ? "/assets/heart-filled.svg" : "/assets/heart.svg"}
                         style={isFavorited ? {filter: "none"} : {}}
-                        alt="Favorite"
                         draggable="false"
                     />
                 </button>
