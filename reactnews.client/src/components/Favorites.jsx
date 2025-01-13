@@ -36,7 +36,7 @@ function Favorites() {
   return (
   <>
     <div className="page-header">
-      <img src="/assets/heart.svg" draggable="false" />
+      <img src="/assets/heart.svg" draggable="false" alt="Heart icon" />
       <h1>My Favorites</h1>
     </div>
 
@@ -47,7 +47,7 @@ function Favorites() {
       ) : (
         <>
           <p className="empty-msg">No favorited articles yet.</p>
-          <p className="empty-msg">Click an article's <img src="/assets/heart.svg" draggable="false" /> icon to save it here.</p>
+          <p className="empty-msg">Click an article's <img src="/assets/heart.svg" draggable="false" alt="Heart icon" /> icon to save it here.</p>
         </>
       )
     }

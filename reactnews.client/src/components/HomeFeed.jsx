@@ -62,7 +62,7 @@ function HomeFeed() {
     return (
     <>
         <div className="page-header">
-            <img src="/assets/home.svg" draggable="false" />
+            <img src="/assets/home.svg" draggable="false" alt="Home Icon" />
             <h1>Today's Top Stories</h1>
         </div>
 

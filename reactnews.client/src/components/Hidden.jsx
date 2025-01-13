@@ -45,7 +45,7 @@ function Hidden() {
             ) : (
                 <>
                     <p className="empty-msg">No hidden articles yet.</p>
-                    <p className="empty-msg">Click an article's <img src="/assets/hidden.svg" draggable="false" /> icon to hide it. The article will be hidden from all results and will only be accessible here.</p>
+                    <p className="empty-msg">Click an article's <img src="/assets/hidden.svg" draggable="false" alt="Hidden icon"/> icon to hide it. The article will be hidden from all results and will only be accessible here.</p>
                 </>
             )
         }
