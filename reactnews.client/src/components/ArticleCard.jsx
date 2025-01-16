@@ -1,14 +1,29 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import '../stylesheets/ArticleCard.css';
 
 function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites, isHidden, setHidden}) {
+    const cardVariants = {
+        hidden: { 
+            opacity: 0, 
+            x: -500 
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.5,
+                ease: "linear",
+            },
+        },
+    };
 
     function openArticle(articleUrl) {
         window.open(articleUrl, "_blank");
     }
 
     function shareArticle(event) {
-        event.stopPropagation(); // Prevent triggering the `onClick` for opening the article
+        event.stopPropagation(); // Prevent triggering the onClick for opening the article
 
         if (navigator.share) {
             navigator
@@ -115,7 +130,14 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
 
     
     return (
-        <div className="news-item" onClick={() => openArticle(url)}>
+        <motion.div
+            className="news-item"
+            onClick={() => openArticle(url)}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.2 }}
+        >
             <div className="news-item-content">
                 <img className="news-image" src={imagePath} alt="Article image" draggable="false" />
 
@@ -164,7 +186,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                     <img src="/assets/share.svg" draggable="false" />
                 </button>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
