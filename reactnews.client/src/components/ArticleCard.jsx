@@ -3,10 +3,11 @@ import { motion } from 'framer-motion';
 import '../stylesheets/ArticleCard.css';
 
 function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites, isHidden, setHidden}) {
+    // Card scroll animation
     const cardVariants = {
         hidden: { 
             opacity: 0, 
-            x: -500 
+            x: -200 
         },
         visible: {
             opacity: 1,
@@ -18,6 +19,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
         },
     };
 
+    // Article actions
     function openArticle(articleUrl) {
         window.open(articleUrl, "_blank");
     }
