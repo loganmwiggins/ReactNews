@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import '../stylesheets/Nav.css';
 
 function Nav() {
-    // JAVASCRIPT
     const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
 
@@ -72,7 +70,7 @@ function Nav() {
                     <button type="button" onClick={() => handleDirectory("Favorites")}>Favorites</button>
                     <button type="button" onClick={() => handleDirectory("Hidden")}>Hidden</button>
                     <span>|</span>
-                    <img src="/assets/search.svg" draggable="false" />
+                    <img src="/assets/compass.svg" draggable="false" />
                     <button type="button" onClick={() => handleDirectory("United States")}>U.S.</button>
                     <button type="button" onClick={() => handleDirectory("Technology")}>Tech</button>
                     <button type="button" onClick={() => handleDirectory("Entertainment")}>Entertainment</button>
