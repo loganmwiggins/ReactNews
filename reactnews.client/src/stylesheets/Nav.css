@@ -28,7 +28,7 @@
     img {
         width: 1.75rem;
         height: 1.75rem;
-        animation: rotate 10s linear infinite;
+        /* animation: rotate 10s linear infinite; */
         transition: scale .2s ease-in-out;
     }
     img:hover {
@@ -37,10 +37,10 @@
     }
 }
 
-@keyframes rotate {
+/* @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-}
+} */
 
 .date {
     display: flex;

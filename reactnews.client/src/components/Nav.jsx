@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from "motion/react";
 import '../stylesheets/Nav.css';
 
 function Nav() {
@@ -53,7 +54,16 @@ function Nav() {
             {/* Main Row */}
             <div className="main-row">
                 <div className="title" title="by Vraj Patel & Logan Wiggins">
-                    <img src="/assets/react.svg" draggable="false" />
+                    <motion.img
+                        src="/assets/react.svg"
+                        draggable="false"
+                        animate={{ rotate: 360 }}
+                        transition={{
+                            repeat: Infinity,
+                            duration: 10,
+                            ease: "linear",
+                        }}
+                    />
                     <h3>ReactNews</h3>
                 </div>
 
