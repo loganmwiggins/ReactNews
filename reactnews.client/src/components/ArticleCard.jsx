@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Modal from 'react-modal';
 import '../stylesheets/ArticleCard.css';
-import { button } from 'framer-motion/client';
 
 function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites, isHidden, setHidden}) {
     // Card scroll animation

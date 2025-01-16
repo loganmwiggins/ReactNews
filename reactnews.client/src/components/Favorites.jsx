@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import ArticleCard from './ArticleCard';
 
 function Favorites() {
@@ -35,10 +36,15 @@ function Favorites() {
 
   return (
   <>
-    <div className="page-header">
+    <motion.div
+      className="page-header"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <img src="/assets/heart.svg" draggable="false" />
       <h1>My Favorites</h1>
-    </div>
+    </motion.div>
 
     <div className="news-container">
     {

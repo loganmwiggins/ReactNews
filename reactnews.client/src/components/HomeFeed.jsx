@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import ArticleCard from './ArticleCard';
 import '../stylesheets/HomeFeed.css';
 
@@ -61,10 +62,15 @@ function HomeFeed() {
 
     return (
     <>
-        <div className="page-header">
+        <motion.div
+            className="page-header"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
             <img src="/assets/home.svg" draggable="false" />
             <h1>Today's Top Stories</h1>
-        </div>
+        </motion.div>
 
         <div className="news-container">
         {

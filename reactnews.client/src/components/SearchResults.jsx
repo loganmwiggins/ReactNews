@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import ArticleCard from './ArticleCard';
 
 function SearchResults() {
@@ -67,10 +68,15 @@ function SearchResults() {
 
     return (
         <div>
-            <div className="page-header">
+            <motion.div
+                className="page-header"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
                 <img src="/assets/search.svg" draggable="false" />
                 <h1>{query}</h1>
-            </div>
+            </motion.div>
             <div className="news-container">
             {
                 searchedArticles.length > 0 ? (

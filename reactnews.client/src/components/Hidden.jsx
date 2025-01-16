@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import ArticleCard from './ArticleCard';
 
 function Hidden() {
@@ -33,10 +34,15 @@ function Hidden() {
 
     return (
     <>
-        <div className="page-header">
-        <img src="/assets/hidden.svg" draggable="false" />
+        <motion.div
+            className="page-header"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            <img src="/assets/hidden.svg" draggable="false" />
             <h1>Hidden Articles</h1>
-        </div>
+        </motion.div>
 
         <div className="news-container">
         {
