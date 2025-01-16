@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Modal from 'react-modal';
 import '../stylesheets/ArticleCard.css';
+import { button } from 'framer-motion/client';
 
 function ArticleCard({imagePath, title, author, dateTime, description, url, source, isFavorited, setFavorites, isHidden, setHidden}) {
     // Card scroll animation
@@ -13,11 +15,43 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
             opacity: 1,
             x: 0,
             transition: {
-                duration: 0.5,
+                duration: 0.3,
                 ease: "linear",
             },
         },
     };
+
+    // Modal styles
+    const customStyles = {
+        overlay: {
+            background: 'rgba(0, 0, 0, 0.75)'
+        },
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'black',
+            color: 'white',
+            maxWidth: 'calc(100vw - 2rem)',
+            maxHeight: 'calc(100vh - 2rem)',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem'
+        },
+    };
+
+    Modal.setAppElement('#root');
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function toggleModal(event) {
+        event.stopPropagation();
+        setIsOpen(!modalIsOpen);
+    }
 
     // Article actions
     function openArticle(articleUrl) {
@@ -25,7 +59,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
     }
 
     function shareArticle(event) {
-        event.stopPropagation(); // Prevent triggering the onClick for opening the article
+        event.stopPropagation();
 
         if (navigator.share) {
             navigator
@@ -132,6 +166,25 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
 
     
     return (
+    <>
+        {/* Modal */}
+        <Modal
+            isOpen={modalIsOpen}
+            style={customStyles}
+            contentLabel="Example Modal"
+            portalClassName="modal"
+        >
+            <div className="btn-ctnr">
+                <button type="button" className="btn-icon" onClick={toggleModal}>
+                    <img src="/assets/close.svg" draggable="false" />
+                </button>
+            </div>
+            <img className="news-image" src={imagePath} alt="Article image" draggable="false" />
+            <h2>{title}</h2>
+            <p className="news-description">{description}</p>
+        </Modal>
+
+        {/* Article card */}
         <motion.div
             className="news-item"
             onClick={() => openArticle(url)}
@@ -154,6 +207,17 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                 </div>
             </div>
             <div className="news-item-btns">
+                {/* <button 
+                    type="button" 
+                    className="btn-icon" 
+                    onClick={toggleModal}
+                    title="Open article modal"
+                >
+                    <img 
+                        src="/assets/expand.svg" 
+                        draggable="false" 
+                    />
+                </button> */}
                 <button 
                     type="button" 
                     className="btn-icon" 
@@ -189,6 +253,7 @@ function ArticleCard({imagePath, title, author, dateTime, description, url, sour
                 </button>
             </div>
         </motion.div>
+    </>
     );
 }
 

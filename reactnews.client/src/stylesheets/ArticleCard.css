@@ -78,6 +78,32 @@
     }
 }
 
+/* Modal */
+/* .Modal {
+    background: var(--card-color);
+    h2 { color: black; }
+} */
+.modal {
+    display: flex;
+    flex-direction: column;
+    background: black;
+    
+    h2 { color: white; }
+    img { width: 50%; }
+    .btn-ctnr {
+        display: flex;
+        justify-content: right;
+    }
+}
+
+/* .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75) !important;
+} */
 
 
 /* LESS THAN 800px */
